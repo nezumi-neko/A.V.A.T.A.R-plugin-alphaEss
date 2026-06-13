@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; script-src-elem 'self'; style-src 'self' 'unsafe-inline'">
+    <link href="./alphaEss.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <div class="header-left">
+            <span class="sun-icon" id="sun-icon">☀️</span>
+            <span class="title">Alpha ESS</span>
+        </div>
+        <div class="header-right">
+            <span class="theme-btn" id="btn-theme" title="Thème">◑</span>
+            <span class="btn-quit" id="btn-quit">✕</span>
+        </div>
+    </div>
+
+    <!-- Flux d'énergie animé -->
+    <div class="flux-container">
+
+        <!-- Ligne horizontale -->
+        <div class="flux-row">
+
+            <div class="flux-node">
+                <!-- Panneau PV SVG -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 30" width="44" height="30">
+                  <rect x="0" y="0" width="44" height="30" rx="2" fill="#2c3e50"/>
+                  <rect x="1" y="1" width="42" height="28" rx="1.5" fill="#1a3a5c"/>
+                  <!-- 4x3 cellules -->
+                  <rect x="2"  y="2"  width="9" height="8" rx="0.5" fill="#1e4d8c" opacity="0.95"/>
+                  <rect x="12" y="2"  width="9" height="8" rx="0.5" fill="#1e4d8c" opacity="0.95"/>
+                  <rect x="22" y="2"  width="9" height="8" rx="0.5" fill="#1e4d8c" opacity="0.95"/>
+                  <rect x="32" y="2"  width="10" height="8" rx="0.5" fill="#1e4d8c" opacity="0.95"/>
+                  <rect x="2"  y="11" width="9" height="8" rx="0.5" fill="#1e4d8c" opacity="0.95"/>
+                  <rect x="12" y="11" width="9" height="8" rx="0.5" fill="#1e4d8c" opacity="0.95"/>
+                  <rect x="22" y="11" width="9" height="8" rx="0.5" fill="#1e4d8c" opacity="0.95"/>
+                  <rect x="32" y="11" width="10" height="8" rx="0.5" fill="#1e4d8c" opacity="0.95"/>
+                  <rect x="2"  y="20" width="9" height="8" rx="0.5" fill="#1e4d8c" opacity="0.95"/>
+                  <rect x="12" y="20" width="9" height="8" rx="0.5" fill="#1e4d8c" opacity="0.95"/>
+                  <rect x="22" y="20" width="9" height="8" rx="0.5" fill="#1e4d8c" opacity="0.95"/>
+                  <rect x="32" y="20" width="10" height="8" rx="0.5" fill="#1e4d8c" opacity="0.95"/>
+                  <!-- Reflets -->
+                  <rect x="2"  y="2"  width="9" height="2" rx="0.5" fill="white" opacity="0.1"/>
+                  <rect x="12" y="2"  width="9" height="2" rx="0.5" fill="white" opacity="0.1"/>
+                  <rect x="22" y="2"  width="9" height="2" rx="0.5" fill="white" opacity="0.1"/>
+                  <rect x="32" y="2"  width="10" height="2" rx="0.5" fill="white" opacity="0.1"/>
+                </svg>
+                <div class="node-label">Panneaux</div>
+                <div class="node-val" id="flux-pv">— W</div>
+            </div>
+
+            <div class="flux-link-h">
+                <svg viewBox="0 0 60 10" preserveAspectRatio="none" width="100%" height="10">
+                    <line x1="2" y1="5" x2="58" y2="5" stroke="#f0a500" stroke-width="2" stroke-dasharray="6,4" id="dash-pv-inv"/>
+                </svg>
+                <div class="link-val" id="lval-pv">—</div>
+            </div>
+
+            <!-- Onduleur + batterie en colonne -->
+            <div class="flux-inv-col">
+                <div class="flux-node">
+                    <!-- Onduleur Alpha ESS SVG -->
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 42" width="28" height="36">
+                      <!-- Corps principal -->
+                      <rect x="0" y="0" width="32" height="42" rx="3" fill="#d0d4d8"/>
+                      <rect x="0" y="0" width="32" height="42" rx="3" fill="none" stroke="#b0b4b8" stroke-width="0.5"/>
+                      <!-- Bande noire à gauche (logo) -->
+                      <rect x="0" y="0" width="7" height="42" rx="3" fill="#2c3040"/>
+                      <rect x="7" y="0" width="0.5" height="42" fill="#2c3040"/>
+                      <!-- Logo Alpha ESS simplifié -->
+                      <text x="3.5" y="10" text-anchor="middle" font-size="5" fill="white" font-family="Arial" font-weight="bold">α</text>
+                      <!-- Écran LCD -->
+                      <rect x="9" y="6" width="18" height="10" rx="1.5" fill="#1a2a1a"/>
+                      <rect x="10" y="7" width="16" height="8" rx="1" fill="#2d4a2d"/>
+                      <!-- Segments écran -->
+                      <rect x="11" y="8.5" width="5" height="1" rx="0.5" fill="#7fff7f" opacity="0.8"/>
+                      <rect x="11" y="10" width="7" height="1" rx="0.5" fill="#7fff7f" opacity="0.8"/>
+                      <rect x="11" y="11.5" width="4" height="1" rx="0.5" fill="#7fff7f" opacity="0.6"/>
+                      <!-- LEDs -->
+                      <circle cx="22" cy="9"  r="1" fill="#00ff44" opacity="0.9"/>
+                      <circle cx="22" cy="12" r="1" fill="#ffaa00" opacity="0.7"/>
+                      <circle cx="25" cy="9"  r="1" fill="#00ff44" opacity="0.5"/>
+                      <!-- Ligne séparation milieu -->
+                      <rect x="7" y="26" width="25" height="0.5" fill="#b0b4b8"/>
+                      <!-- Ventilation bas -->
+                      <rect x="9"  y="29" width="20" height="1.5" rx="0.5" fill="#b8bcbf" opacity="0.6"/>
+                      <rect x="9"  y="32" width="20" height="1.5" rx="0.5" fill="#b8bcbf" opacity="0.6"/>
+                      <rect x="9"  y="35" width="20" height="1.5" rx="0.5" fill="#b8bcbf" opacity="0.6"/>
+                      <rect x="9"  y="38" width="20" height="1.5" rx="0.5" fill="#b8bcbf" opacity="0.6"/>
+                      <!-- Connecteurs bas -->
+                      <rect x="9"  y="20" width="5" height="5" rx="0.5" fill="#a0a4a8"/>
+                      <rect x="15" y="20" width="5" height="5" rx="0.5" fill="#a0a4a8"/>
+                      <rect x="21" y="20" width="5" height="5" rx="0.5" fill="#a0a4a8"/>
+                    </svg>
+                    <div class="node-label">Onduleur</div>
+                    <div class="node-val" id="flux-inv">— W</div>
+                </div>
+                <!-- Trait vertical centré + valeur à droite -->
+                <div class="flux-link-v">
+                    <div class="v-line-wrap">
+                        <svg viewBox="0 0 10 30" preserveAspectRatio="none" width="10" height="30">
+                            <line x1="5" y1="0" x2="5" y2="30" stroke="#f39c12" stroke-width="2" stroke-dasharray="5,4" id="dash-bat"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="flux-node" style="align-self:center; position:relative;">
+                    <div class="node-icon">🔋</div>
+                    <div class="node-label">Batterie</div>
+                    <div class="node-val" id="flux-bat">— %</div>
+                    <!-- Valeur + flèche à droite de la batterie -->
+                    <div class="bat-side-val" id="lval-bat">—</div>
+                </div>
+            </div>
+
+            <div class="flux-link-h">
+                <svg viewBox="0 0 60 10" preserveAspectRatio="none" width="100%" height="10">
+                    <line x1="2" y1="5" x2="58" y2="5" stroke="#2ecc71" stroke-width="2" stroke-dasharray="6,4" id="dash-inv-home"/>
+                </svg>
+                <div class="link-val" id="lval-home">—</div>
+            </div>
+
+            <div class="flux-node">
+                <div class="node-icon">🏠</div>
+                <div class="node-label">Maison</div>
+                <div class="node-val" id="flux-load">— W</div>
+            </div>
+
+            <div class="flux-link-h">
+                <svg viewBox="0 0 60 10" preserveAspectRatio="none" width="100%" height="10">
+                    <line x1="2" y1="5" x2="58" y2="5" stroke="#3498db" stroke-width="2" stroke-dasharray="6,4" id="dash-home-grid"/>
+                </svg>
+                <div class="link-val" id="lval-grid">—</div>
+            </div>
+
+            <div class="flux-node">
+                <!-- Poteau HT SVG -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 44" width="28" height="38">
+                  <!-- Mât central -->
+                  <rect x="15" y="10" width="2" height="34" fill="#aab0b8"/>
+                  <!-- Traverse haute -->
+                  <rect x="5" y="10" width="22" height="2" rx="1" fill="#8899aa"/>
+                  <!-- Traverse milieu -->
+                  <rect x="8" y="20" width="16" height="1.5" rx="0.5" fill="#8899aa"/>
+                  <!-- Diagonales haute gauche -->
+                  <line x1="16" y1="10" x2="5"  y2="20" stroke="#8899aa" stroke-width="1"/>
+                  <line x1="16" y1="10" x2="27" y2="20" stroke="#8899aa" stroke-width="1"/>
+                  <!-- Isolateurs traverse haute -->
+                  <circle cx="5"  cy="13" r="2" fill="#cc4400" stroke="#aa3300" stroke-width="0.5"/>
+                  <circle cx="27" cy="13" r="2" fill="#cc4400" stroke="#aa3300" stroke-width="0.5"/>
+                  <circle cx="16" cy="13" r="2" fill="#cc4400" stroke="#aa3300" stroke-width="0.5"/>
+                  <!-- Isolateurs traverse milieu -->
+                  <circle cx="8"  cy="22" r="1.5" fill="#cc4400" stroke="#aa3300" stroke-width="0.5"/>
+                  <circle cx="24" cy="22" r="1.5" fill="#cc4400" stroke="#aa3300" stroke-width="0.5"/>
+                  <!-- Fils électriques haute -->
+                  <path d="M5,15 Q10,18 16,15" stroke="#556677" stroke-width="0.8" fill="none"/>
+                  <path d="M16,15 Q22,18 27,15" stroke="#556677" stroke-width="0.8" fill="none"/>
+                  <!-- Fils électriques milieu -->
+                  <path d="M8,24 Q16,27 24,24" stroke="#556677" stroke-width="0.8" fill="none"/>
+                  <!-- Base -->
+                  <polygon points="12,44 20,44 16,10" fill="none" stroke="#8899aa" stroke-width="0.5"/>
+                  <rect x="11" y="42" width="10" height="2" rx="1" fill="#667788"/>
+                </svg>
+                <div class="node-label">EDF</div>
+                <div class="node-val" id="flux-grid">— W</div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Batterie barre -->
+    <div class="card">
+        <div class="card-row">
+            <span class="card-label">🔋 Batterie</span>
+            <span class="card-value-sm" id="val-soc">— %</span>
+            <span class="card-value-sm temp" id="val-temp"></span>
+        </div>
+        <div class="bar-bg"><div class="bar-fill" id="bar-soc"></div></div>
+    </div>
+
+    <div class="separator"></div>
+    <div class="section-title">Bilan du jour</div>
+
+    <!-- 4 métriques en grille -->
+    <div class="grid-4">
+        <div class="mini-card">
+            <div class="mini-label">☀️ Produit</div>
+            <div class="mini-val" id="val-solar">—</div>
+            <div class="mini-unit">kWh</div>
+        </div>
+        <div class="mini-card">
+            <div class="mini-label">🏠 Consommé</div>
+            <div class="mini-val" id="val-loadday">—</div>
+            <div class="mini-unit">kWh</div>
+        </div>
+        <div class="mini-card">
+            <div class="mini-label">📥 Importé</div>
+            <div class="mini-val" id="val-import">—</div>
+            <div class="mini-unit">kWh</div>
+        </div>
+        <div class="mini-card">
+            <div class="mini-label">📤 Exporté</div>
+            <div class="mini-val" id="val-export">—</div>
+            <div class="mini-unit">kWh</div>
+        </div>
+    </div>
+
+    <!-- Taux -->
+    <div class="card">
+        <div class="card-row"><span class="card-label">🛡️ Autosuffisance</span><span class="card-value-sm" id="val-suff">— %</span></div>
+        <div class="bar-bg"><div class="bar-fill bar-green" id="bar-suff"></div></div>
+    </div>
+    <div class="card">
+        <div class="card-row"><span class="card-label">♻️ Autoconsommation</span><span class="card-value-sm" id="val-cons">— %</span></div>
+        <div class="bar-bg"><div class="bar-fill bar-blue" id="bar-cons"></div></div>
+    </div>
+
+    <!-- Économies + CO2 -->
+    <div class="row-three">
+        <div class="card card-third eco">
+            <div class="mini-label">💶 Économies</div>
+            <div class="mini-val green" id="val-savings">—</div>
+            <div class="mini-unit">€ aujourd'hui</div>
+        </div>
+        <div class="card card-third eco">
+            <div class="mini-label">🌿 CO₂ évité</div>
+            <div class="mini-val green" id="val-co2">—</div>
+            <div class="mini-unit">kg</div>
+        </div>
+        <div class="card card-third eco">
+            <div class="mini-label">⚛️ Carbone évité</div>
+            <div class="mini-val green" id="val-carbon">—</div>
+            <div class="mini-unit">kg C</div>
+        </div>
+    </div>
+
+    <!-- Pic de production -->
+    <div class="card card-row">
+        <span class="card-label">⚡ Pic de production</span>
+        <span class="card-value-sm amber" id="val-peak">— W</span>
+    </div>
+
+    <div class="separator"></div>
+    <div class="section-title">Courbe de production</div>
+
+    <!-- Graphique -->
+    <div class="chart-container">
+        <canvas id="chart-power"></canvas>
+        <div class="chart-empty" id="chart-empty">Pas de données</div>
+    </div>
+
+    <div class="separator"></div>
+    <div class="section-title">7 derniers jours</div>
+
+    <!-- Historique 7 jours -->
+    <div class="history-container" id="history-bars"></div>
+
+    <div class="footer">
+        Mis à jour à <span id="val-update">--:--</span> •
+        Pic : <span id="val-peak-footer">— W</span>
+    </div>
+
+    <script src="./alphaEss-renderer.js"></script>
+</body>
+</html>

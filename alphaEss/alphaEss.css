@@ -1,0 +1,247 @@
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── Thèmes ── */
+:root {
+    --bg:        #0f1923;
+    --bg2:       #1a2535;
+    --bg3:       #1e2d40;
+    --border:    #2c3e50;
+    --text:      #e8eaf0;
+    --text-dim:  #8899aa;
+    --accent:    #f0a500;
+    --green:     #2ecc71;
+    --blue:      #3498db;
+    --red:       #e74c3c;
+    --orange:    #f39c12;
+}
+body.light {
+    --bg:       #f0f4f8;
+    --bg2:      #ffffff;
+    --bg3:      #e8eef4;
+    --border:   #ccd6e0;
+    --text:     #1a2535;
+    --text-dim: #667788;
+}
+
+body, html {
+    width: 100%; height: 100%;
+    overflow-y: auto; overflow-x: hidden;
+    background: var(--bg); color: var(--text);
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 12px;
+    -webkit-app-region: drag;
+    transition: background 0.3s, color 0.3s;
+}
+
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+/* ── Header ── */
+.header {
+    display: flex; justify-content: space-between; align-items: center;
+    background: var(--bg2); padding: 8px 12px;
+    border-bottom: 2px solid var(--accent); position: sticky; top: 0; z-index: 10;
+}
+.header-left, .header-right { display: flex; align-items: center; gap: 6px; }
+.sun-icon { font-size: 18px; }
+.title { font-size: 14px; font-weight: 700; color: var(--accent); letter-spacing: 0.5px; }
+.theme-btn, .btn-quit {
+    -webkit-app-region: no-drag; cursor: pointer;
+    color: var(--text-dim); font-size: 13px;
+    padding: 2px 5px; border-radius: 4px;
+    transition: color 0.2s, background 0.2s;
+}
+.btn-quit:hover { color: #fff; background: var(--red); }
+.theme-btn:hover { color: var(--text); background: var(--border); }
+
+/* ── Flux d'énergie ── */
+.flux-container {
+    margin: 6px 8px;
+    background: var(--bg2);
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    padding: 10px 6px;
+    -webkit-app-region: no-drag;
+}
+
+/* Ligne horizontale principale */
+.flux-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+/* Nœuds simples (PV, Maison, EDF) */
+.flux-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1px;
+    flex-shrink: 0;
+}
+.node-icon  { font-size: 20px; line-height: 1; }
+.flux-node svg { display: block; }
+.node-label { font-size: 8px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.3px; }
+.node-val   { font-size: 10px; font-weight: 700; color: var(--text); }
+
+/* Colonne onduleur + trait + batterie */
+.flux-inv-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+/* Lien horizontal (trait entre nœuds) */
+.flux-link-h {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1px;
+    flex: 1;
+    min-width: 24px;
+}
+.link-val {
+    font-size: 8px;
+    color: var(--text-dim);
+    white-space: nowrap;
+}
+
+/* Colonne onduleur + batterie */
+.flux-inv-col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-shrink: 0;
+    position: relative;
+}
+
+/* Nœud onduleur — référence pour le centrage */
+.flux-inv-col .flux-node {
+    align-self: center;
+}
+
+/* Lien vertical (onduleur ↕ batterie) */
+.flux-link-v {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+    height: 30px;
+    width: 100%;
+}
+/* Trait centré par position absolue par rapport au nœud onduleur */
+.v-line-wrap {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+}
+/* Valeur + flèche à droite de l'icône batterie */
+.bat-side-val {
+    position: absolute;
+    left: calc(100% + 4px);
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 9px;
+    font-weight: 700;
+    color: #f39c12;
+    white-space: nowrap;
+}
+
+/* ── Animations tirets SVG ── */
+@keyframes dash-lr { from { stroke-dashoffset:  40; } to { stroke-dashoffset: 0;  } }
+@keyframes dash-rl { from { stroke-dashoffset:   0; } to { stroke-dashoffset: 40; } }
+@keyframes dash-tb { from { stroke-dashoffset:  40; } to { stroke-dashoffset: 0;  } }
+@keyframes dash-bt { from { stroke-dashoffset:   0; } to { stroke-dashoffset: 40; } }
+
+.anim-lr { animation: dash-lr 0.8s linear infinite; }
+.anim-rl { animation: dash-rl 0.8s linear infinite; }
+.anim-tb { animation: dash-tb 0.8s linear infinite; }
+.anim-bt { animation: dash-bt 0.8s linear infinite; }
+.anim-off { animation: none; opacity: 0.2; }
+
+/* ── Cards ── */
+.card {
+    background: var(--bg2); border-radius: 8px;
+    padding: 7px 11px; margin: 4px 8px;
+    border-left: 3px solid var(--border);
+    -webkit-app-region: no-drag;
+}
+.card-row { display: flex; align-items: center; justify-content: space-between; }
+.card-label { font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.3px; }
+.card-value-sm { font-size: 15px; font-weight: 700; color: var(--text); }
+.temp { font-size: 11px; color: var(--text-dim); }
+.amber { color: var(--accent) !important; }
+.green { color: var(--green) !important; }
+
+/* ── Barres ── */
+.bar-bg { background: var(--bg); border-radius: 4px; height: 5px; margin-top: 5px; overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 4px; width: 0%; transition: width 0.6s ease, background 0.4s; background: var(--green); }
+.bar-green { background: var(--green); }
+.bar-blue  { background: var(--blue); }
+
+/* ── Grille 4 métriques ── */
+.grid-4 {
+    display: grid; grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 4px; margin: 4px 8px; -webkit-app-region: no-drag;
+}
+.mini-card {
+    background: var(--bg2); border-radius: 8px;
+    padding: 6px 4px; text-align: center;
+    border-top: 2px solid var(--border);
+}
+.mini-label { font-size: 9px; color: var(--text-dim); margin-bottom: 2px; }
+.mini-val { font-size: 14px; font-weight: 700; color: var(--text); }
+.mini-unit { font-size: 9px; color: var(--text-dim); }
+
+/* ── Trois cartes côte à côte ── */
+.row-three { display: flex; gap: 0; }
+.card-third { flex: 1; }
+.row-three .card:first-child  { margin-right: 2px; }
+.row-three .card:nth-child(2) { margin-left: 2px; margin-right: 2px; }
+.row-three .card:last-child   { margin-left: 2px; }
+.eco { text-align: center; }
+
+/* ── Séparateur ── */
+.separator { height: 1px; background: var(--border); margin: 6px 8px 3px; }
+.section-title {
+    font-size: 9px; color: var(--accent); text-transform: uppercase;
+    letter-spacing: 1px; padding: 2px 10px 0; font-weight: 700;
+}
+
+/* ── Graphique ── */
+.chart-container {
+    position: relative; height: 140px; margin: 4px 8px;
+    background: var(--bg2); border-radius: 8px; padding: 6px;
+    -webkit-app-region: no-drag;
+}
+#chart-power { width: 100%; height: 100%; }
+.chart-empty {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+    color: var(--text-dim); font-size: 10px; display: none;
+}
+
+/* ── Historique 7 jours ── */
+.history-container {
+    display: flex; align-items: flex-end; justify-content: space-around;
+    height: 70px; margin: 4px 8px; background: var(--bg2);
+    border-radius: 8px; padding: 6px 8px 20px;
+    -webkit-app-region: no-drag; position: relative;
+}
+.hist-bar-wrap { display: flex; flex-direction: column; align-items: center; flex: 1; height: 100%; justify-content: flex-end; }
+.hist-bar {
+    width: 70%; border-radius: 3px 3px 0 0;
+    background: linear-gradient(to top, var(--accent), #ffe066);
+    min-height: 2px; transition: height 0.6s ease;
+}
+.hist-label { font-size: 8px; color: var(--text-dim); margin-top: 3px; position: absolute; bottom: 4px; }
+.hist-val { font-size: 8px; color: var(--text-dim); margin-bottom: 2px; }
+
+/* ── Footer ── */
+.footer { text-align: center; font-size: 9px; color: var(--text-dim); padding: 5px 0 7px; }

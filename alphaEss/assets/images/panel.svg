@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 28" width="40" height="28">
+  <defs>
+    <linearGradient id="panel-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1a3a5c"/>
+      <stop offset="100%" stop-color="#0d2240"/>
+    </linearGradient>
+    <linearGradient id="cell-shine" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2a5298" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#1a3a6e" stop-opacity="1"/>
+    </linearGradient>
+  </defs>
+  <!-- Cadre panneau -->
+  <rect x="0" y="2" width="40" height="24" rx="2" fill="#2c3e50"/>
+  <rect x="1" y="3" width="38" height="22" rx="1.5" fill="url(#panel-bg)"/>
+  <!-- Grille cellules 4x3 -->
+  <!-- Ligne 1 -->
+  <rect x="2"  y="4"  width="8" height="6" rx="0.5" fill="url(#cell-shine)" opacity="0.9"/>
+  <rect x="11" y="4"  width="8" height="6" rx="0.5" fill="url(#cell-shine)" opacity="0.9"/>
+  <rect x="20" y="4"  width="8" height="6" rx="0.5" fill="url(#cell-shine)" opacity="0.9"/>
+  <rect x="29" y="4"  width="9" height="6" rx="0.5" fill="url(#cell-shine)" opacity="0.9"/>
+  <!-- Ligne 2 -->
+  <rect x="2"  y="11" width="8" height="6" rx="0.5" fill="url(#cell-shine)" opacity="0.9"/>
+  <rect x="11" y="11" width="8" height="6" rx="0.5" fill="url(#cell-shine)" opacity="0.9"/>
+  <rect x="20" y="11" width="8" height="6" rx="0.5" fill="url(#cell-shine)" opacity="0.9"/>
+  <rect x="29" y="11" width="9" height="6" rx="0.5" fill="url(#cell-shine)" opacity="0.9"/>
+  <!-- Ligne 3 -->
+  <rect x="2"  y="18" width="8" height="6" rx="0.5" fill="url(#cell-shine)" opacity="0.9"/>
+  <rect x="11" y="18" width="8" height="6" rx="0.5" fill="url(#cell-shine)" opacity="0.9"/>
+  <rect x="20" y="18" width="8" height="6" rx="0.5" fill="url(#cell-shine)" opacity="0.9"/>
+  <rect x="29" y="18" width="9" height="6" rx="0.5" fill="url(#cell-shine)" opacity="0.9"/>
+  <!-- Reflets -->
+  <rect x="2"  y="4"  width="8" height="2" rx="0.5" fill="white" opacity="0.08"/>
+  <rect x="11" y="4"  width="8" height="2" rx="0.5" fill="white" opacity="0.08"/>
+  <rect x="20" y="4"  width="8" height="2" rx="0.5" fill="white" opacity="0.08"/>
+  <rect x="29" y="4"  width="9" height="2" rx="0.5" fill="white" opacity="0.08"/>
+</svg>

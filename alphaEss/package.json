@@ -1,0 +1,13 @@
+{
+    "name": "alphaEss",
+    "version": "1.0.0",
+    "type": "module",
+    "description": "Plugin Alpha ESS pour A.V.A.T.A.R - Monitoring panneau solaire et batterie",
+    "repository": "https://github.com/YOUR-REPOSITORY",
+    "keywords": ["alphaess", "solar", "battery", "energy", "photovoltaic"],
+    "author": "YOUR-NAME",
+    "license": "mit",
+    "dependencies": {
+        "fs-extra": "^11.2.0"
+    }
+}

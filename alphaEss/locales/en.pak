@@ -1,0 +1,25 @@
+{
+    "message": {
+        "noData": "I don't have data from your Alpha ESS system yet. Please check your connection.",
+        "solarProduction": "Your solar installation has produced $$ kilowatt-hours today.",
+        "batteryLevel": "Your battery charge level is $$ percent.",
+        "currentPower": "Your installation is currently producing $$ watts, that is $$ kilowatts.",
+        "gridImporting": "You are currently importing $$ watts from the grid.",
+        "gridExporting": "You are currently exporting $$ watts to the grid.",
+        "homeConsumption": "Your instant home consumption is $$ watts.",
+        "dailyConsumption": "You have consumed $$ kilowatt-hours today.",
+        "gridImportExport": "Today you imported $$ kilowatt-hours from the grid and exported $$ kilowatt-hours.",
+        "selfSufficiency": "Your self-sufficiency rate is $$ percent today.",
+        "selfConsumption": "Your solar self-consumption rate is $$ percent today.",
+        "savings": "You have saved $$ euros thanks to your solar installation today.",
+        "co2": "You have avoided emitting $$ kilograms of CO2 today.",
+        "peakPower": "Today's peak production reached $$ watts.",
+        "fullStatus": "Here is the full summary: production $$ watts, battery $$ percent, $$ kilowatt-hours produced, self-sufficiency $$ percent, self-consumption $$ percent, $$ kilowatt-hours consumed, savings $$ euros, CO2 avoided $$ kilograms."
+    },
+    "alert": {
+        "batteryLow": "Warning, the battery is low at $$ percent.",
+        "batteryFull": "Battery is fully charged, one hundred percent reached.",
+        "exporting": "You are exporting $$ watts to the electrical grid.",
+        "noProd": "Warning, no solar production detected during daytime. Please check your installation."
+    }
+}

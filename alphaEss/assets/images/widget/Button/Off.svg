@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" width="80" height="80">
+  <defs>
+    <radialGradient id="bg-off" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#1a1f1a"/>
+      <stop offset="100%" stop-color="#0a0d0a"/>
+    </radialGradient>
+    <radialGradient id="sun-dim" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#555" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#333" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="80" height="80" rx="14" fill="url(#bg-off)"/>
+  <rect width="80" height="80" rx="14" fill="none" stroke="#3a4a3a" stroke-width="1.5" opacity="0.5"/>
+
+  <!-- Outer dim glow -->
+  <circle cx="40" cy="32" r="22" fill="url(#sun-dim)"/>
+
+  <!-- Sun rays (dim) -->
+  <g opacity="0.3">
+    <line x1="40" y1="8"  x2="40" y2="14" stroke="#888" stroke-width="2" stroke-linecap="round"/>
+    <line x1="40" y1="50" x2="40" y2="56" stroke="#888" stroke-width="2" stroke-linecap="round"/>
+    <line x1="16" y1="32" x2="22" y2="32" stroke="#888" stroke-width="2" stroke-linecap="round"/>
+    <line x1="58" y1="32" x2="64" y2="32" stroke="#888" stroke-width="2" stroke-linecap="round"/>
+    <line x1="22.5" y1="14.5" x2="26.7" y2="18.7" stroke="#888" stroke-width="2" stroke-linecap="round"/>
+    <line x1="53.3" y1="45.3" x2="57.5" y2="49.5" stroke="#888" stroke-width="2" stroke-linecap="round"/>
+    <line x1="57.5" y1="14.5" x2="53.3" y2="18.7" stroke="#888" stroke-width="2" stroke-linecap="round"/>
+    <line x1="26.7" y1="45.3" x2="22.5" y2="49.5" stroke="#888" stroke-width="2" stroke-linecap="round"/>
+  </g>
+
+  <!-- Sun core (dim) -->
+  <circle cx="40" cy="32" r="10" fill="#333" stroke="#555" stroke-width="1" opacity="0.7"/>
+  <circle cx="40" cy="32" r="6" fill="#444" opacity="0.6"/>
+
+  <!-- Battery bar at bottom (empty) -->
+  <rect x="14" y="60" width="52" height="10" rx="5" fill="#0d150d" stroke="#3a4a3a" stroke-width="1" opacity="0.7"/>
+  <rect x="16" y="62" width="10" height="6" rx="3" fill="#445" opacity="0.5"/>
+  <!-- battery tip -->
+  <rect x="67" y="63.5" width="3" height="3" rx="1" fill="#3a4a3a" opacity="0.5"/>
+
+  <!-- Label -->
+  <text x="40" y="76" text-anchor="middle" font-family="monospace" font-size="5.5" fill="#445544" opacity="0.7" letter-spacing="1">SOLAR</text>
+</svg>

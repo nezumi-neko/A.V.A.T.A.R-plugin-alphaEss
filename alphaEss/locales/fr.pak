@@ -1,0 +1,25 @@
+{
+    "message": {
+        "noData": "Je n'ai pas encore de données de votre installation Alpha ESS. Vérifiez votre connexion.",
+        "solarProduction": "Votre installation solaire a produit $$ kilowattheures aujourd'hui.",
+        "batteryLevel": "Le niveau de charge de votre batterie photovoltaïque est de $$ pourcent.",
+        "currentPower": "Votre installation produit actuellement $$ watts, soit $$ kilowatts.",
+        "gridImporting": "Vous importez actuellement $$ watts depuis le réseau.",
+        "gridExporting": "Vous exportez actuellement $$ watts vers le réseau.",
+        "homeConsumption": "Votre consommation instantanée est de $$ watts.",
+        "dailyConsumption": "Vous avez consommé $$ kilowattheures aujourd'hui.",
+        "gridImportExport": "Aujourd'hui vous avez importé $$ kilowattheures du réseau, et exporté $$ kilowattheures.",
+        "selfSufficiency": "Votre taux d'autosuffisance est de $$ pourcent aujourd'hui.",
+        "selfConsumption": "Votre taux d'autoconsommation solaire est de $$ pourcent aujourd'hui.",
+        "savings": "Vous avez économisé $$ euros grâce à votre installation solaire aujourd'hui.",
+        "co2": "Vous avez évité l'émission de $$ kilogrammes de CO2 aujourd'hui.",
+        "peakPower": "Le pic de production atteint aujourd'hui est de $$ watts.",
+        "fullStatus": "Voici le bilan complet : production $$ watts, batterie $$ pourcent, $$ kilowattheures produits, autosuffisance $$ pourcent, autoconsommation $$ pourcent, $$ kilowattheures consommés, économies $$ euros, CO2 évité $$ kilogrammes."
+    },
+    "alert": {
+        "batteryLow": "Attention, la batterie est faible, elle est à $$ pourcent.",
+        "batteryFull": "La batterie est pleine, cent pourcent de charge atteint.",
+        "exporting": "Vous exportez $$ watts vers le réseau électrique.",
+        "noProd": "Attention, aucune production solaire détectée alors que la journée est bien entamée. Vérifiez votre installation."
+    }
+}

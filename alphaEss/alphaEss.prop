@@ -1,0 +1,40 @@
+{
+	"modules":{
+		"alphaEss":{
+			"version":"2.0",
+			"name":"Alpha ESS",
+			"appId":"VOTRE-ID",
+			"appSecret":"VOTRE-APP-SECRET",
+			"serialNumber":"VOTRE-NUMERO-DE-SERIE",
+			"kwh_price":0.19,
+			"fuel_factor":0.73,
+			"pv_factor":0.055,
+			"webPort":3847,
+			"devTools":false,
+			"widget":{"display":true},
+			"alerts":{
+				"batteryLowThreshold":20,
+				"alertClient":""
+			},
+			"rules":{
+				"solarProduction":["(what is|show|give me|tell me) * (solar|pv|photovoltaic) * production","(what is|show) * (energy|power) * produced today"],
+				"batteryLevel":["(what is|show|give me) * battery * (level|percentage|charge|soc)","battery * (level|status|charge)"],
+				"currentPower":["(what is|show|give me) * (current|instant|live|real time) * power","(current|instant|live) * (solar|pv) * power"],
+				"gridExchange":["(what is|show|give me) * (grid|network) * (power|exchange|import|export)","(how much) * (importing|exporting) * (grid|network)"],
+				"homeConsumption":["(what is|show|give me) * (home|house|load) * consumption","(how much) * (consuming|using) * (right now|currently|power)"],
+				"dailyConsumption":["(what is|show|give me) * (total|daily) * (consumption|load) * today","how much * (energy|power) * consumed today"],
+				"gridImportExport":["(how much) * (imported|exported) * (from|to) * grid * today","(total|daily) * (grid|network) * (import|export) * today"],
+				"selfSufficiency":["(what is|show|give me) * self * (sufficiency|sufficient|sufficiency rate)","self sufficiency * today"],
+				"selfConsumption":["(what is|show|give me) * self * (consumption|consumption rate)","self consumption * today"],
+				"savings":["(how much) * (saved|savings|money) * today","(what are|show) * (savings|economies) * today"],
+				"co2":["(how much) * (co2|carbon|co 2) * (avoided|saved|reduced)","carbon * (footprint|avoided|saved) * today"],
+				"peakPower":["(what was|show) * (peak|maximum|max) * (power|production) * today",
+				"peak * (solar|pv) * power * today"],
+				"fullStatus":["(show|give me|what is) * (full|all|complete) * (status|info|data|stats)","full * (solar|energy|system) * status"]
+			}
+		}
+	},
+	"cron":{
+		"alphaEss":{"name":"alphaEss","time":"*/30 * * * * *"}
+	}
+}
