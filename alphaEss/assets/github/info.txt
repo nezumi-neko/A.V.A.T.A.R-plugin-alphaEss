@@ -1,0 +1,3 @@
+Plugin A.V.A.T.A.R pour monitorer votre installation solaire et batterie Alpha ESS via l'Open API officielle.
+
+A.V.A.T.A.R plugin to monitor your Alpha ESS solar and battery installation through the official Open API.
